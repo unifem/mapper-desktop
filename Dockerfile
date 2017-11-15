@@ -11,8 +11,8 @@ LABEL maintainer "Xiangmin Jiao <xmjiao@gmail.com>"
 USER root
 WORKDIR /tmp
 
-ARG TRILINOS_VERSION=12-12-1 \
-    DTK_VERSION=2.0
+ARG TRILINOS_VERSION=12-12-1
+ARG DTK_VERSION=2.0
 
 # Build DataTransferKit
 RUN cd /tmp && \
