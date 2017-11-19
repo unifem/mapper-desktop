@@ -11,7 +11,6 @@ env:
 before_script:
   - docker --version
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_USERPASS"
-  - docker pull $BASE
 
 script:
   # Build only if the commit range of a push contains Dockerfile or .travis.yml
