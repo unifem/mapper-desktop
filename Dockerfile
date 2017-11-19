@@ -49,9 +49,9 @@ RUN cd /tmp && \
         -DTrilinos_ENABLE_Tpetra:BOOL=ON \
         -DTpetra_INST_INT_UNSIGNED_LONG:BOOL=ON \
         -DTPL_ENABLE_BLAS:BOOL=ON \
-        -DTPL_BLAS_LIBRARIES=/usr/lib/libopenblas.so \
+        -DTPL_BLAS_LIBRARIES=/usr/lib/x86_64-linux-gnu/libopenblas.so \
         -DTPL_ENABLE_LAPACK:BOOL=ON \
-        -DTPL_LAPACK_LIBRARIES=/usr/lib/libopenblas.so \
+        -DTPL_LAPACK_LIBRARIES=/usr/lib/x86_64-linux-gnu/libopenblas.so \
         -DTPL_ENABLE_Eigen:BOOL=ON \
         -DTPL_Eigen_INCLUDE_DIRS=/usr/include/eigen3 \
         -DTrilinos_ENABLE_DataTransferKit=ON \
