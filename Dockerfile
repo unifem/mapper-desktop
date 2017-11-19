@@ -26,7 +26,7 @@ RUN cd /tmp && \
     mkdir build && cd build && \
     cmake \
         -DCMAKE_INSTALL_PREFIX:PATH=/usr/local \
-        -DCMAKE_BUILD_TYPE:STRING=RELEASE \
+        -DCMAKE_BUILD_TYPE:STRING=DEBUG \
         -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF \
         -DCMAKE_SHARED_LIBS:BOOL=ON \
         -DTPL_ENABLE_MPI:BOOL=ON \

@@ -6,6 +6,7 @@ services: docker
 env:
   global:
     - BASE=unifem/fenics-desktop:latest
+    - BRANCH=debug
 
 before_script:
   - docker --version
@@ -18,10 +19,10 @@ script:
         -n $(git log --since $(docker inspect $BASE | grep Created | perl -e "s/.+\"([\d-:T]+).+$/\$1/g" -p)) &&
         -z "$(git diff --name-only $TRAVIS_COMMIT_RANGE |
             grep -e Dockerfile -e .travis.yml -e image -e WELCOME)" ]] ||
-    (docker build --tag unifem/mapper-desktop:latest . &&
-     docker push unifem/mapper-desktop &&
+    (docker build --tag unifem/mapper-desktop:${BRANCH} . &&
+     docker push unifem/mapper-desktop:${BRANCH} &&
      touch success)'
   # Test startup scripts
-  - './mapper_desktop.py -d -n && docker stop $(docker ps -q) &&
-     ./mapper_jupyter.py -d -n && docker stop $(docker ps -q)'
+  - './mapper_desktop.py -d -n -t ${BRANCH} && docker stop $(docker ps -q) &&
+     ./mapper_jupyter.py -d -n -t ${BRANCH} && docker stop $(docker ps -q)'
   - docker images
