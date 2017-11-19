@@ -15,7 +15,7 @@ ARG TRILINOS_VERSION=12-12-1
 ARG DTK_VERSION=2.0
 
 # Build DataTransferKit
-# For options to control Trolinos, see
+# For options to control Trilinos, see
 # https://trilinos.org/oldsite/TrilinosBuildQuickRef.html#configuring-makefile-generator
 RUN cd /tmp && \
     git clone --depth 1 --branch trilinos-release-${TRILINOS_VERSION} \
