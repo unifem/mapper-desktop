@@ -5,7 +5,7 @@ services: docker
 
 env:
   global:
-    - BASE=unifem/fenics-desktop:latest
+    - BASE=unifem/meshdb-desktop:latest
     - BRANCH=debug
 
 before_script:
