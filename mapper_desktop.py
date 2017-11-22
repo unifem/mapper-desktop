@@ -37,8 +37,8 @@ def parse_args(description):
     parser.add_argument('-m', '--matlab', nargs='?',
                         metavar='VERSION',
                         help='Specify MATLAB version. Supported versions ' +
-                        'include R2016b or R2017a. The default is R2017a.',
-                        const="R2017a", default="")
+                        'include R2016b, R2017a, and R2017b. The default is R2017b.',
+                        const="R2017b", default="")
 
     parser.add_argument('-v', '--volume',
                         help='A data volume to be mounted at ~/' + APP + '. ' +
