@@ -34,6 +34,12 @@ def parse_args(description):
                         'If the image already has a tag, its tag prevails.',
                         default="latest")
 
+    parser.add_argument('-m', '--matlab', nargs='?',
+                        metavar='VERSION',
+                        help='Specify MATLAB version. Supported versions ' +
+                        'include R2016b or R2017a. The default is R2017a.',
+                        const="R2017a", default="")
+
     parser.add_argument('-v', '--volume',
                         help='A data volume to be mounted at ~/' + APP + '. ' +
                         'The default is ' + APP + '_project.',
@@ -175,7 +181,7 @@ def handle_interrupt(container):
     except KeyboardInterrupt:
         print('*** Stopping the server.')
         subprocess.Popen(["docker", "exec", container,
-                          "killall", "startvnc.sh"],
+                          "killall", "my_init"],
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         sys.exit(0)
 
@@ -249,6 +255,9 @@ if __name__ == "__main__":
         volumes += ["-v", homedir + "/.gitconfig" +
                     ":" + docker_home + "/.gitconfig_host"]
 
+    if args.matlab:
+        volumes += ["-v", "matlab_bin:/usr/local/MATLAB/"]
+
     if args.volume:
         if args.clear:
             try:
@@ -283,10 +292,12 @@ if __name__ == "__main__":
     envs = ["--hostname", container,
             "--env", "RESOLUT=" + size,
             "--env", "HOST_UID=" + uid]
+    if args.matlab:
+        envs += ["--env", "MATLAB_VERSION=" + args.matlab]
 
     # Start the docker image in the background and pipe the stderr
     port_http = str(find_free_port(6080, 50))
-    port_vnc = str(find_free_port(5290, 50))
+    port_vnc = str(find_free_port(5950, 50))
     subprocess.call(["docker", "run", "-d", rmflag, "--name", container,
                      "-p", "127.0.0.1:" + port_http + ":6080",
                      "-p", "127.0.0.1:" + port_vnc + ":5900"] +
