@@ -67,16 +67,12 @@ RUN cd /tmp && \
     \
     rm -rf /tmp/Trilinos
 
-
+ADD image/bin /usr/local/bin
+ADD image/home $DOCKER_HOME
 
 ########################################################
 # Install gdutil and prepare for MATLAB
 ########################################################
-
-ADD image/bin /usr/local/bin
-ADD image/home $DOCKER_HOME
-
-# Install gdutil and set permission
 RUN git clone --depth 1 https://github.com/hpdata/gdutil /usr/local/gdutil && \
     pip2 install -r /usr/local/gdutil/requirements.txt && \
     pip3 install -r /usr/local/gdutil/requirements.txt && \
@@ -85,7 +81,6 @@ RUN git clone --depth 1 https://github.com/hpdata/gdutil /usr/local/gdutil && \
     \
     echo "move_to_config matlab/R2016b" >> /usr/local/bin/init_vnc && \
     echo "move_to_config matlab/R2017a" >> /usr/local/bin/init_vnc
-
 
 
 USER $DOCKER_USER
