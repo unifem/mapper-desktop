@@ -62,7 +62,7 @@ RUN cd /tmp && \
         -DTPL_ENABLE_BoostLib:BOOL=OFF \
         -DBUILD_SHARED_LIBS:BOOL=ON \
         .. && \
-    make -j4 && \
+    make -j2 && \
     make install && \
     \
     rm -rf /tmp/Trilinos
