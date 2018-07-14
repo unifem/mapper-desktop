@@ -22,7 +22,7 @@ RUN cd /tmp && \
         https://github.com/trilinos/Trilinos.git && \
     cd Trilinos && \
     git clone --depth 1 --branch dtk-${DTK_VERSION} \
-        https://github.com/ORNL-CEES/DataTransferKit.git && \
+        https://github.com/unifem/DataTransferKit.git && \
     mkdir build && cd build && \
     cmake \
         -DCMAKE_INSTALL_PREFIX:PATH=/usr/local \
